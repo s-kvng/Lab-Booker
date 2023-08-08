@@ -1,0 +1,59 @@
+/* styles.css */
+.welcome-page {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+}
+
+.inner-container{
+    -fx-background-radius: 10px;
+}
+
+.header-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2666b5;
+}
+
+.welcome-label {
+    -fx-font-size: 45px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2666b5;fx-text-fill: blue;
+}
+
+.instruction-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2666b5;
+    -fx-font-weight: bold;
+}
+
+.login-button {
+    -fx-background-color: orange;
+    -fx-text-fill: white;
+    -fx-background-radius: 999px;
+    -fx-padding: 20px 20px;
+}
+
+.exit-button {
+    -fx-text-fill: white;
+    -fx-background-color: red;
+
+}
+
+.text-input{
+    -fx-padding: 20px 20px;
+    -fx-border-color: #2666b5;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-background-color: white;
+}
+
+/*.date-Input{
+    -fx-border-color: red;
+}*/
+
+
+/* Optional styling for rounded corners on the exit button */
+.exit-button {
+    -fx-background-radius: 999px;
+
+}
