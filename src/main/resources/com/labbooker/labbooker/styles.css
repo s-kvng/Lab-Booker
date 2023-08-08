@@ -33,6 +33,11 @@
     -fx-padding: 20px 20px;
 }
 
+.login-button:hover{
+    -fx-background-color: #e4a831;
+}
+
+
 .exit-button {
     -fx-text-fill: white;
     -fx-background-color: red;
@@ -45,6 +50,10 @@
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
     -fx-background-color: white;
+}
+
+.error-text{
+    -fx-text-fill: red;
 }
 
 /*.date-Input{

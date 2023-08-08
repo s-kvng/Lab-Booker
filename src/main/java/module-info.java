@@ -6,6 +6,7 @@ module com.labbooker.labbooker {
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens com.labbooker.labbooker to javafx.fxml;
     exports com.labbooker.labbooker;
