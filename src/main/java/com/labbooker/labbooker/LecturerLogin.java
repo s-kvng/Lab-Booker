@@ -3,13 +3,10 @@ package com.labbooker.labbooker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -81,12 +78,26 @@ public class LecturerLogin {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verify);
 
+            Alert alert;
+
             while(queryResult.next()){
                 if(queryResult.getInt(1) == 1){
-                    redirectPage();
+                    lecturerData();
+                    if( getLecturerData.reset_password == 1){
+                        redirectPage();
+                    }
+                    else{
+                        redirectDashboardPage();
+                    }
+
                 }
                 else{
-                    emailErrorMessage.setText("Invalid login. Please try again");
+
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Invalid login. Please try again");
+                    alert.showAndWait();
                 }
             }
         }
@@ -111,5 +122,47 @@ public class LecturerLogin {
 //        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void redirectDashboardPage() throws IOException {
+        roott = new FXMLLoader(HelloApplication.class.getResource("welcome.fxml"));
+        stage = (Stage) exitBtn.getScene().getWindow();
+        scene = new Scene(roott.load());
+        String css = this.getClass().getResource("styles.css").toExternalForm();
+        scene.getStylesheets().add(css);
+//        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public  void lecturerData(){
+
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String query = "SELECT * FROM `LecturerAccounts` WHERE email = '" + emailField.getText() + "' AND password = '"+ passField.getText() + "'";
+
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            getLecturerData data;
+
+            while(rs.next()){
+//
+                getLecturerData.id = rs.getInt("id");
+                getLecturerData.first_name = rs.getString("first_name");
+                getLecturerData.last_name = rs.getString("last_name");
+                getLecturerData.reset_password = rs.getInt("reset_password");
+                getLecturerData.email = rs.getString("email");
+
+
+
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
