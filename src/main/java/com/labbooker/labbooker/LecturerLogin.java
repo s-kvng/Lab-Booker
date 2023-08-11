@@ -125,7 +125,7 @@ public class LecturerLogin {
     }
 
     public void redirectDashboardPage() throws IOException {
-        roott = new FXMLLoader(HelloApplication.class.getResource("welcome.fxml"));
+        roott = new FXMLLoader(HelloApplication.class.getResource("bookingForm.fxml"));
         stage = (Stage) exitBtn.getScene().getWindow();
         scene = new Scene(roott.load());
         String css = this.getClass().getResource("styles.css").toExternalForm();
