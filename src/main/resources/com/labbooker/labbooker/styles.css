@@ -14,10 +14,16 @@
     -fx-text-fill: #2666b5;
 }
 
+.header-label2 {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #fff;
+}
+
 .welcome-label {
     -fx-font-size: 45px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2666b5;fx-text-fill: blue;
+    -fx-text-fill: #2666b5;
 }
 
 .instruction-label {
@@ -42,6 +48,20 @@
     -fx-text-fill: white;
     -fx-background-color: red;
 
+}
+
+.back-button {
+    -fx-text-fill: black;
+    -fx-background-color: #e4a831;
+    -fx-background-radius: 999px;
+
+}
+
+.history-button{
+     -fx-text-fill: white;
+     -fx-background-color: #000;
+     -fx-background-radius: 999px;
+     -fx-cursor: pointer;
 }
 
 .text-input{
