@@ -57,6 +57,13 @@
 
 }
 
+.history-button{
+     -fx-text-fill: white;
+     -fx-background-color: #000;
+     -fx-background-radius: 999px;
+     -fx-cursor: pointer;
+}
+
 .text-input{
     -fx-padding: 20px 20px;
     -fx-border-color: #2666b5;
