@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -39,10 +40,9 @@
                                 <cursor>
                                     <Cursor fx:constant="HAND" />
                                 </cursor></Button>
-                            <TextField layoutX="108.0" layoutY="63.0" prefWidth="300.0" promptText="Enter lab name" styleClass="text-input" />
-                        <TextField layoutX="111.0" layoutY="199.0" prefWidth="300.0" promptText="Enter Start Time" />
-                        <DatePicker layoutX="110.0" layoutY="129.0" prefHeight="58.0" prefWidth="296.0" promptText="Choose Date" styleClass="date-Input" />
-                        <TextField layoutX="111.0" layoutY="356.0" prefHeight="58.0" prefWidth="300.0" promptText="Enter Class" />
+                        <TextField fx:id="time" layoutX="111.0" layoutY="199.0" prefWidth="300.0" promptText="Enter Start Time" />
+                        <DatePicker fx:id="date" layoutX="110.0" layoutY="129.0" prefHeight="58.0" prefWidth="296.0" promptText="Choose Date" styleClass="date-Input" />
+                        <TextField fx:id="className" layoutX="111.0" layoutY="356.0" prefHeight="58.0" prefWidth="300.0" promptText="Enter Class" />
                         <Label layoutX="28.0" layoutY="21.0" text="Lecturer :">
                            <font>
                               <Font name="System Bold" size="18.0" />
@@ -64,6 +64,7 @@
                            </cursor>
                         </Button>
                         <TextField layoutX="111.0" layoutY="282.0" prefWidth="300.0" promptText="Enter End Time" />
+                        <ComboBox fx:id="labNameComboBox" layoutX="110.0" layoutY="86.0" prefHeight="24.0" prefWidth="300.0" />
                         </children>
                     </AnchorPane>
                </bottom>
