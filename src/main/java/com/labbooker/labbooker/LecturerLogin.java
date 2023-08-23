@@ -117,8 +117,8 @@ public class LecturerLogin {
         roott = new FXMLLoader(HelloApplication.class.getResource("changePassword.fxml"));
         stage = (Stage) exitBtn.getScene().getWindow();
         scene = new Scene(roott.load());
-        String css = this.getClass().getResource("styles.css").toExternalForm();
-        scene.getStylesheets().add(css);
+//        String css = this.getClass().getResource("styles.css").toExternalForm();
+//        scene.getStylesheets().add(css);
 //        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
