@@ -18,6 +18,9 @@ public class BookingForm implements Initializable {
     private ComboBox<String> labNameComboBox;
 
     @FXML
+    private ComboBox<String> classNameComboBox1;
+
+    @FXML
     private TextField className;
 
     @FXML
@@ -37,6 +40,10 @@ public class BookingForm implements Initializable {
             "Lab 1" , "Lab 2" , "Lab 3"
     );
 
+    private ObservableList<String> classNameList = FXCollections.observableArrayList(
+            "NKA" , "NKB" , "NKC" , "NKD" ,"NKAB-100" , "NKAB-200", "NKCD-100"
+    );
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -46,6 +53,8 @@ public class BookingForm implements Initializable {
         }
 
         labNameComboBox.setItems(labName);
+
+        classNameComboBox1.setItems(classNameList);
 
         labNameComboBox.setConverter(new StringConverter<String>() {
             @Override
@@ -58,6 +67,20 @@ public class BookingForm implements Initializable {
                 return s;
             }
         });
+
+
+        classNameComboBox1.setConverter(new StringConverter<String>() {
+            @Override
+            public String toString(String s) {
+                return s;
+            }
+
+            @Override
+            public String fromString(String s) {
+                return s;
+            }
+        });
+
 
     }
 
