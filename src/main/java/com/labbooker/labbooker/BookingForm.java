@@ -15,6 +15,8 @@ import java.util.ResourceBundle;
 public class BookingForm implements Initializable {
 
     @FXML
+    private Button bookbtn;
+    @FXML
     private ComboBox<String> labNameComboBox;
 
     @FXML
@@ -94,6 +96,8 @@ public class BookingForm implements Initializable {
        }
     }
 
+
+
     public void handleExitButtonClick(ActionEvent actionEvent) {
 
         Stage stage = (Stage) exitBtn.getScene().getWindow();
@@ -101,7 +105,8 @@ public class BookingForm implements Initializable {
     }
 
 
+    public void handleBookBtn(ActionEvent actionEvent) {
 
 
-
+    }
 }

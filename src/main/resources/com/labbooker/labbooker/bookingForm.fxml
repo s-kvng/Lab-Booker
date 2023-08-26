@@ -21,7 +21,7 @@
                <bottom>
                     <AnchorPane prefHeight="544.0" prefWidth="526.0" style="-fx-background-color: white;" styleClass="inner-container" BorderPane.alignment="CENTER">
                         <children>
-                            <Button layoutX="111.0" layoutY="432.0" mnemonicParsing="false" prefWidth="300.0" styleClass="login-button" stylesheets="@styles.css" text="BOOK">
+                            <Button fx:id="bookbtn" layoutX="111.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleBookBtn" prefWidth="300.0" styleClass="login-button" stylesheets="@styles.css" text="BOOK">
                                 <font>
                                     <Font name="System Bold" size="13.0" />
                                 </font>
@@ -66,6 +66,7 @@
                         <ComboBox fx:id="labNameComboBox" layoutX="110.0" layoutY="86.0" prefHeight="24.0" prefWidth="300.0" />
                         <ComboBox fx:id="classNameComboBox1" layoutX="110.0" layoutY="376.0" prefHeight="24.0" prefWidth="300.0" />
                         <Label layoutX="110.0" layoutY="360.0" text="Class :" />
+                        <Label layoutX="110.0" layoutY="70.0" text="Lab :" />
                         </children>
                     </AnchorPane>
                </bottom>
