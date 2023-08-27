@@ -1,5 +1,6 @@
 package com.labbooker.labbooker;
 
+import com.labbooker.labbooker.utils.CheckPosition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,9 +9,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
+import net.synedra.validatorfx.Check;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Objects;
@@ -38,6 +41,10 @@ public class ChangePassword {
     @FXML
     private FXMLLoader roott;
 
+    String query;
+
+    CheckPosition position = CheckPosition.getInstance();
+
 
     public void handleResetBtn() throws IOException {
         Alert alert;
@@ -48,7 +55,12 @@ public class ChangePassword {
 
             if(Objects.equals(passwordField1.getText(), passwordField2.getText())){
                 saveNewPassword();
-                redirectPage();
+                if(position.getPosition().equals("class rep")){
+                    redirectPage("bookingForm.fxml");
+                }
+                else{
+                    redirectPage("bookingForm.fxml");
+                }
 
 
             }
@@ -93,11 +105,25 @@ public class ChangePassword {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String verify = "UPDATE `LecturerAccounts` SET `password`='" + passwordField1.getText() +"',`reset_password`='"+ reset +"' WHERE `email`='"+ getLecturerData.email +"'";
+        if(position.getPosition().equals("class rep")){
+             query = "UPDATE `repAccounts` SET `password`= ? ,`reset_password`= ? WHERE `email`= ?";
+        } else if (position.getPosition().equals("lecturer")) {
+            query = "UPDATE `LecturerAccounts` SET `password`= ? ,`reset_password`= ? WHERE `email`=? ";
+        }
 
         try{
-            Statement statement = connectDB.createStatement();
-            int queryResult = statement.executeUpdate(verify);
+
+
+            PreparedStatement ps = connectDB.prepareStatement(query);
+            ps.setString(1,passwordField1.getText());
+            ps.setInt(2, reset);
+            if (position.getPosition().equals("class rep")){
+                ps.setString(3, position.getEmail());
+            }
+            else{
+                ps.setString(3, getLecturerData.email);
+            }
+            int queryResult = ps.executeUpdate();
 
             Alert alert;
 
@@ -121,8 +147,8 @@ public class ChangePassword {
         }
     }
 
-    public void redirectPage() throws IOException {
-        roott = new FXMLLoader(HelloApplication.class.getResource("bookingForm.fxml"));
+    public void redirectPage(String page) throws IOException {
+        roott = new FXMLLoader(HelloApplication.class.getResource(page));
         stage = (Stage) exitBtn.getScene().getWindow();
         scene = new Scene(roott.load());
         String css = this.getClass().getResource("styles.css").toExternalForm();

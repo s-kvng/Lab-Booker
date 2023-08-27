@@ -28,7 +28,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button layoutX="113.0" layoutY="316.0" mnemonicParsing="false" prefWidth="300.0" styleClass="login-button" text="CLASS REP">
+                        <Button fx:id="classRepBtn" layoutX="113.0" layoutY="316.0" mnemonicParsing="false" prefWidth="300.0" styleClass="login-button" text="CLASS REP" onAction="#handleClassRepBtn">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>

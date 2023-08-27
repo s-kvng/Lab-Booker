@@ -34,7 +34,14 @@ public class PositionController {
 
     public void handleClickLecturerBtn(ActionEvent e) throws IOException {
 
-        roott = new FXMLLoader(HelloApplication.class.getResource("lecturerLogin.fxml"));
+        changePage("lecturerLogin.fxml", e);
+
+    }
+
+
+    public void changePage(String page , ActionEvent e) throws IOException {
+
+        roott = new FXMLLoader(HelloApplication.class.getResource(page));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(roott.load());
         String css = this.getClass().getResource("styles.css").toExternalForm();
@@ -42,5 +49,10 @@ public class PositionController {
 //        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
+
+    }
+
+    public void handleClassRepBtn(ActionEvent e) throws IOException {
+        changePage("classRepLogin.fxml", e);
     }
 }
