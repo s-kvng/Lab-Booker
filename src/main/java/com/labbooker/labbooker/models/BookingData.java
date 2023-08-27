@@ -1,4 +1,4 @@
-package com.labbooker.labbooker;
+package com.labbooker.labbooker.models;
 
 import java.sql.Date;
 

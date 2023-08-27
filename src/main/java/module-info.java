@@ -10,4 +10,8 @@ module com.labbooker.labbooker {
 
     opens com.labbooker.labbooker to javafx.fxml;
     exports com.labbooker.labbooker;
+    exports com.labbooker.labbooker.models;
+    opens com.labbooker.labbooker.models to javafx.fxml;
+    exports com.labbooker.labbooker.utils;
+    opens com.labbooker.labbooker.utils to javafx.fxml;
 }

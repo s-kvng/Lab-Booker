@@ -1,6 +1,8 @@
 package com.labbooker.labbooker;
 
+import com.labbooker.labbooker.models.GetLecturerData;
 import com.labbooker.labbooker.utils.CheckPosition;
+import com.labbooker.labbooker.utils.DatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,13 +11,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
-import net.synedra.validatorfx.Check;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.Objects;
 
 public class ChangePassword {
@@ -121,7 +120,7 @@ public class ChangePassword {
                 ps.setString(3, position.getEmail());
             }
             else{
-                ps.setString(3, getLecturerData.email);
+                ps.setString(3, position.getEmail());
             }
             int queryResult = ps.executeUpdate();
 

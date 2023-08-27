@@ -1,5 +1,8 @@
 package com.labbooker.labbooker;
 
+import com.labbooker.labbooker.models.GetLecturerData;
+import com.labbooker.labbooker.utils.CheckPosition;
+import com.labbooker.labbooker.utils.DatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +42,9 @@ public class LecturerLogin {
 
     @FXML
     private FXMLLoader roott;
+
+    GetLecturerData lecturerData = GetLecturerData.getInstance();
+    CheckPosition position = CheckPosition.getInstance();
 
 
 
@@ -83,7 +89,10 @@ public class LecturerLogin {
             while(queryResult.next()){
                 if(queryResult.getInt(1) == 1){
                     lecturerData();
-                    if( getLecturerData.reset_password == 1){
+                    position.setPosition("lecturer");
+                    position.setEmail(lecturerData.getEmail());
+                    if( lecturerData.getReset_password() == 1){
+
                         redirectPage();
                     }
                     else{
@@ -146,15 +155,15 @@ public class LecturerLogin {
         try{
             Statement statement = connectDB.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            getLecturerData data;
+
 
             while(rs.next()){
 //
-                getLecturerData.id = rs.getInt("id");
-                getLecturerData.first_name = rs.getString("first_name");
-                getLecturerData.last_name = rs.getString("last_name");
-                getLecturerData.reset_password = rs.getInt("reset_password");
-                getLecturerData.email = rs.getString("email");
+                lecturerData.setId(rs.getInt("id"));
+                lecturerData.setFirst_name( rs.getString("first_name"));
+                lecturerData.setLast_name(rs.getString("last_name"));
+                lecturerData.setReset_password(rs.getInt("reset_password"));
+                lecturerData.setEmail(rs.getString("email"));
 
 
 

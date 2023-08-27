@@ -1,6 +1,7 @@
 package com.labbooker.labbooker;
 
 import com.labbooker.labbooker.utils.CheckPosition;
+import com.labbooker.labbooker.utils.DatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

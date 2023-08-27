@@ -1,5 +1,6 @@
 package com.labbooker.labbooker;
 
+import com.labbooker.labbooker.models.GetLecturerData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,6 +38,8 @@ public class BookingForm implements Initializable {
     @FXML
     private Label lecturerName;
 
+    GetLecturerData lecturerData = GetLecturerData.getInstance();
+
 
     private ObservableList<String> labName = FXCollections.observableArrayList(
             "Lab 1" , "Lab 2" , "Lab 3"
@@ -49,9 +52,9 @@ public class BookingForm implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if(getLecturerData.first_name != null ){
+        if(lecturerData.getFirst_name() != null ){
 
-            lecturerName.setText(getLecturerData.first_name + " " + getLecturerData.last_name);
+            lecturerName.setText(lecturerData.getFirst_name() + " " + lecturerData.getLast_name());
         }
 
         labNameComboBox.setItems(labName);
@@ -90,9 +93,9 @@ public class BookingForm implements Initializable {
 
     public void fetchLecturerName(){
 
-       if(!getLecturerData.first_name.isEmpty() ){
+       if(!lecturerData.getFirst_name().isEmpty() ){
 
-           lecturerName.setText(getLecturerData.first_name + " " + getLecturerData.last_name);
+           lecturerName.setText(lecturerData.getFirst_name() + " " + lecturerData.getLast_name());
        }
     }
 

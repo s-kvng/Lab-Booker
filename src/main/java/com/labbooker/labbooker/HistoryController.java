@@ -1,6 +1,7 @@
 package com.labbooker.labbooker;
 
-import javafx.beans.Observable;
+import com.labbooker.labbooker.models.LabBookings;
+import com.labbooker.labbooker.utils.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
