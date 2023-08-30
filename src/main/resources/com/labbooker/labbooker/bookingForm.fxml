@@ -57,12 +57,12 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="historyBtn" layoutX="18.0" layoutY="506.0" mnemonicParsing="false" onAction="#handleExitButtonClick" prefWidth="100.0" styleClass="history-button" text="History">
+                        <Button fx:id="historyBtn" layoutX="18.0" layoutY="506.0" mnemonicParsing="false" onAction="#handleHistoryButtonClick" prefWidth="100.0" styleClass="history-button" text="History">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <TextField layoutX="111.0" layoutY="282.0" prefWidth="300.0" promptText="Enter End Time" />
+                        <TextField fx:id="endTime" layoutX="111.0" layoutY="282.0" prefWidth="300.0" promptText="Enter End Time" />
                         <ComboBox fx:id="labNameComboBox" layoutX="110.0" layoutY="86.0" prefHeight="24.0" prefWidth="300.0" />
                         <ComboBox fx:id="classNameComboBox1" layoutX="110.0" layoutY="376.0" prefHeight="24.0" prefWidth="300.0" />
                         <Label layoutX="110.0" layoutY="360.0" text="Class :" />

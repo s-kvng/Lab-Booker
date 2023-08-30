@@ -1,20 +1,30 @@
 package com.labbooker.labbooker;
 
+import com.labbooker.labbooker.models.BookingData;
 import com.labbooker.labbooker.models.GetLecturerData;
+import com.labbooker.labbooker.utils.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class BookingForm implements Initializable {
 
+    @FXML
+    private TextField endTime;
     @FXML
     private Button bookbtn;
     @FXML
@@ -37,6 +47,17 @@ public class BookingForm implements Initializable {
 
     @FXML
     private Label lecturerName;
+
+    Alert alert;
+
+    @FXML
+    private Stage stage;
+
+    @FXML
+    private Scene scene;
+
+    @FXML
+    private FXMLLoader roott;
 
     GetLecturerData lecturerData = GetLecturerData.getInstance();
 
@@ -108,8 +129,56 @@ public class BookingForm implements Initializable {
     }
 
 
-    public void handleBookBtn(ActionEvent actionEvent) {
+    public void handleHistoryButtonClick(ActionEvent actionEvent) throws IOException {
+
+       redirect("history.fxml");
+    }
 
 
+    public void handleBookBtn(ActionEvent actionEvent){
+
+        BookingData data = new BookingData(labNameComboBox.getValue(), date.getValue(), time.getText() , endTime.getText() ,  classNameComboBox1.getValue());
+
+        String query = "INSERT INTO `lab-booking`(`labName`, `date`, `startTime`, `className`, `endTime`) VALUES (? , ? , ? ,? ,?)";
+
+        DatabaseConnection connection = new DatabaseConnection();
+        Connection conn = connection.getConnection();
+
+
+        try{
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, data.getLab());
+            ps.setDate(2,data.getDate());
+            ps.setTime(3, data.getStartTime());
+            ps.setString(4, data.getClassName());
+            ps.setTime(5, data.getEndTime());
+
+            ps.executeUpdate();
+
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success message");
+            alert.setHeaderText(null);
+            alert.setContentText("You have successfully booked the lab for "+ data.getStartTime() + "on "+ data.getDate());
+            alert.showAndWait();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+    public void redirect(String page) throws IOException {
+
+        roott = new FXMLLoader(HelloApplication.class.getResource(page));
+        stage = (Stage) exitBtn.getScene().getWindow();
+        scene = new Scene(roott.load());
+        String css = this.getClass().getResource("styles.css").toExternalForm();
+        scene.getStylesheets().add(css);
+//        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
     }
 }

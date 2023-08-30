@@ -89,12 +89,14 @@ public class ClassRepLogin {
             while (queryResult.next()) {
                 System.out.println(queryResult.getInt(1));
                 if (queryResult.getInt(1) == 1) {
-//                    lecturerData();
+
+                    position.setPosition("class rep");
+                    position.setEmail(repData.getEmail());
+
                     if (repData.getReset_password() == 1) {
 
 
-                        position.setPosition("class rep");
-                        position.setEmail(repData.getEmail());
+
                         redirect("changePassword.fxml");
 
                         alert = new Alert(Alert.AlertType.INFORMATION);
@@ -106,6 +108,7 @@ public class ClassRepLogin {
                     } else {
 //                        redirectDashboardPage();
 
+                        System.out.println(position.getEmail());
                         alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Success message");
                         alert.setHeaderText(null);

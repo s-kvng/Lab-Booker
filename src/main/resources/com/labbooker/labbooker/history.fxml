@@ -14,7 +14,7 @@
                 <!-- Your existing UI components here -->
 
                 <!-- Table View -->
-                <TableView fx:id="tvBooking" layoutX="-1.0" layoutY="93.0" maxHeight="457.0" maxWidth="750.0" minHeight="457.0" minWidth="750.0" prefHeight="457.0" prefWidth="750.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="93.0">
+                <TableView fx:id="tvBooking" layoutX="-1.0" layoutY="93.0" maxHeight="457.0" maxWidth="750.0" minHeight="457.0" minWidth="750.0" onMouseClicked="#handleMouseClicked" prefHeight="457.0" prefWidth="750.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="93.0">
                     <!-- Table Columns -->
                     <columns>
                         <TableColumn fx:id="colID" prefWidth="44.0" text="Id" />

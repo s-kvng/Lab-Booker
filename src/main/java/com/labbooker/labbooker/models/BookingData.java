@@ -1,24 +1,26 @@
 package com.labbooker.labbooker.models;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
 
 public class BookingData {
 
     private String lab;
 
-    private Date data;
+    private Date date;
 
-    private String startTime;
+    private Time startTime;
 
-    private String endTime;
+    private Time endTime;
 
     private String className;
 
-    public BookingData(String lab, Date data, String startTime, String endTime, String className) {
+    public BookingData(String lab, LocalDate date, String startTime, String endTime, String className) {
         this.lab = lab;
-        this.data = data;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.date = Date.valueOf(date);
+        this.startTime = Time.valueOf(startTime);
+        this.endTime = Time.valueOf(endTime);
         this.className = className;
     }
 
@@ -31,28 +33,28 @@ public class BookingData {
         this.lab = lab;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDate() {
+        return date;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public String getStartTime() {
+    public Time getStartTime() {
         return startTime;
     }
 
     public void setStartTime(String startTime) {
-        this.startTime = startTime;
+        this.startTime = Time.valueOf(startTime);
     }
 
-    public String getEndTime() {
+    public Time getEndTime() {
         return endTime;
     }
 
     public void setEndTime(String endTime) {
-        this.endTime = endTime;
+        this.endTime = Time.valueOf(endTime);
     }
 
     public String getClassName() {
