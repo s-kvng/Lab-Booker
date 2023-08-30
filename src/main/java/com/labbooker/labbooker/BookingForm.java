@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -139,33 +140,38 @@ public class BookingForm implements Initializable {
 
         BookingData data = new BookingData(labNameComboBox.getValue(), date.getValue(), time.getText() , endTime.getText() ,  classNameComboBox1.getValue());
 
-        String query = "INSERT INTO `lab-booking`(`labName`, `date`, `startTime`, `className`, `endTime`) VALUES (? , ? , ? ,? ,?)";
-
         DatabaseConnection connection = new DatabaseConnection();
         Connection conn = connection.getConnection();
 
+        boolean hasConflict = checkForConflictsInDatabase(conn , data);
 
-        try{
+        String query = "INSERT INTO `lab-booking`(`labName`, `date`, `startTime`, `className`, `endTime`) VALUES (? , ? , ? ,? ,?)";
 
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, data.getLab());
-            ps.setDate(2,data.getDate());
-            ps.setTime(3, data.getStartTime());
-            ps.setString(4, data.getClassName());
-            ps.setTime(5, data.getEndTime());
+        if (!hasConflict) {
+            // Add the booking to the database
 
-            ps.executeUpdate();
+            try{
 
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success message");
-            alert.setHeaderText(null);
-            alert.setContentText("You have successfully booked the lab for "+ data.getStartTime() + "on "+ data.getDate());
-            alert.showAndWait();
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, data.getLab());
+                ps.setDate(2,data.getDate());
+                ps.setTime(3, data.getStartTime());
+                ps.setString(4, data.getClassName());
+                ps.setTime(5, data.getEndTime());
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+                ps.executeUpdate();
+
+
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+
+            showSuccessAlert("You have successfully booked the lab for "+ data.getStartTime() + "on "+ data.getDate());
+        } else {
+            showErrorAlert("Booking conflict! Choose a different time.");
         }
-
 
     }
 
@@ -181,4 +187,47 @@ public class BookingForm implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+
+    public boolean checkForConflictsInDatabase(Connection conn, BookingData data) {
+
+        String query = "SELECT * FROM `lab-booking` WHERE `startTime` < ? AND `endTime` > ?";
+
+
+
+            try{
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setTime(1, data.getStartTime());
+                ps.setTime(2, data.getEndTime());
+
+                ResultSet resultSet = ps.executeQuery();
+
+                return resultSet.next(); // Conflict found if any row is returned
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return true; // Handle the error appropriately
+        }
+    }
+
+
+    private void showSuccessAlert(String message) {
+
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success message");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }
+
+//ResultSet resultSet = statement.executeQuery()
