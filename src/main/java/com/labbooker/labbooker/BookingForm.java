@@ -191,14 +191,15 @@ public class BookingForm implements Initializable {
 
     public boolean checkForConflictsInDatabase(Connection conn, BookingData data) {
 
-        String query = "SELECT * FROM `lab-booking` WHERE `startTime` < ? AND `endTime` > ?";
+        String query = "SELECT * FROM `lab-booking` WHERE `labName` = ?' AND `startTime` < ? AND `endTime` > ? ";
 
 
 
             try{
                 PreparedStatement ps = conn.prepareStatement(query);
-                ps.setTime(1, data.getStartTime());
-                ps.setTime(2, data.getEndTime());
+                ps.setString(1, data.getLab());
+                ps.setTime(2, data.getStartTime());
+                ps.setTime(3 , data.getEndTime());
 
                 ResultSet resultSet = ps.executeQuery();
 

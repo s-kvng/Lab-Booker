@@ -1,5 +1,7 @@
 package com.labbooker.labbooker.models;
 
+import javafx.scene.control.DatePicker;
+
 import java.sql.Time;
 import java.sql.Date;
 
@@ -19,6 +21,10 @@ public class LabBookings {
         this.startTime = startTime;
         this.className = className;
         this.endTime = endTime;
+    }
+
+    public LabBookings() {
+
     }
 
     public int getId() {

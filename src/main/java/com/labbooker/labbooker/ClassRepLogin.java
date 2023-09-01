@@ -97,7 +97,7 @@ public class ClassRepLogin {
 
 
 
-                        redirect("changePassword.fxml");
+                        redirect("changePassword.fxml", true);
 
                         alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Success message");
@@ -106,7 +106,7 @@ public class ClassRepLogin {
                         alert.showAndWait();
 
                     } else {
-//                        redirectDashboardPage();
+                         redirect("repDashboard.fxml", false);
 
                         System.out.println(position.getEmail());
                         alert = new Alert(Alert.AlertType.INFORMATION);
@@ -135,13 +135,15 @@ public class ClassRepLogin {
     }
 
 
-    public void redirect(String page) throws IOException {
+    public void redirect(String page , boolean style) throws IOException {
 
         roott = new FXMLLoader(HelloApplication.class.getResource(page));
         stage = (Stage) exitBtn.getScene().getWindow();
         scene = new Scene(roott.load());
-        String css = this.getClass().getResource("styles.css").toExternalForm();
-        scene.getStylesheets().add(css);
+       if(style){
+           String css = this.getClass().getResource("styles.css").toExternalForm();
+           scene.getStylesheets().add(css);
+       }
 //        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
