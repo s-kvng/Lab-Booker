@@ -1,4 +1,4 @@
-package com.labbooker.labbooker;
+package com.labbooker.labbooker.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
