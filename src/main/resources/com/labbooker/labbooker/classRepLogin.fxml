@@ -20,7 +20,7 @@
                 <bottom>
                     <AnchorPane prefHeight="468.0" prefWidth="481.0" style="-fx-background-color: white;" styleClass="inner-container" BorderPane.alignment="CENTER">
                         <children>
-                            <Label alignment="CENTER" layoutX="85.0" layoutY="30.0" prefHeight="66.0" prefWidth="320.0" styleClass="title" text="LECTURER" textFill="#2666b5">
+                            <Label alignment="CENTER" layoutX="85.0" layoutY="30.0" prefHeight="66.0" prefWidth="320.0" styleClass="title" text="CLASS REP" textFill="#2666b5">
                                 <font>
                                     <Font name="System Bold" size="54.0" />
                                 </font>
