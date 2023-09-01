@@ -68,7 +68,7 @@ public class BookingForm implements Initializable {
     );
 
     private ObservableList<String> classNameList = FXCollections.observableArrayList(
-            "NKA" , "NKB" , "NKC" , "NKD" ,"NKAB-100" , "NKAB-200", "NKCD-100"
+            "NKA" , "NKB" , "NKC" , "NKD" ,"NKAB-100" , "NKAB-200", "NKCD-100", "NKCD-200"
     );
 
     @Override
