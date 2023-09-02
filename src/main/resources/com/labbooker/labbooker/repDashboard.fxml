@@ -7,6 +7,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -40,7 +42,13 @@
             <TableColumn fx:id="colEndTime" prefWidth="97.0" text="EndTime" />
         </columns>
       </TableView>
-      <Button fx:id="btnUpdate" layoutX="112.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleBtnAction" text="Update" />
-      <Button fx:id="btnDelete" layoutX="199.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleBtnAction" text="Delete" />
+      <Button fx:id="btnUpdate" layoutX="38.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleBtnAction" prefHeight="24.0" prefWidth="100.0" text="Update" />
+      <Button fx:id="btnDelete" layoutX="168.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleBtnAction" prefWidth="100.0" text="Delete" />
+      <Button layoutX="683.0" layoutY="512.0" mnemonicParsing="false" prefWidth="100.0" text="Exit" />
+      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="45.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/update.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
