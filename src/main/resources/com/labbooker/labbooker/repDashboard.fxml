@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.labbooker.labbooker.RepDashboard">
    <children>
       <VBox layoutX="38.0" layoutY="38.0" prefHeight="172.0" prefWidth="74.0" spacing="17.0">
@@ -31,7 +30,7 @@
             <TextField fx:id="tfEndTime" layoutX="10.0" layoutY="82.0" />
          </children>
       </VBox>
-      <TableView fx:id="tvLabBookings" layoutX="293.0" layoutY="38.0" prefHeight="441.0" prefWidth="503.0">
+      <TableView fx:id="tvLabBookings" layoutX="293.0" layoutY="38.0" onMouseClicked="#handleMouseAction" prefHeight="441.0" prefWidth="503.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="43.0" text="ID" />
           <TableColumn fx:id="colLab" prefWidth="77.0" text="lab" />

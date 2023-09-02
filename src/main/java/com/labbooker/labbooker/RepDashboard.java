@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.sql.*;
@@ -152,6 +153,19 @@ public class RepDashboard implements Initializable {
         }
     }
 
+    public void handleMouseAction(MouseEvent mouseEvent) {
+
+        LabBookings bookings = tvLabBookings.getSelectionModel().getSelectedItem();
+        System.out.println("id " + bookings.getId());
+        System.out.println("id " + bookings.getClassName());
+
+        tfID.setText(String.valueOf(bookings.getId()));
+        labF.setValue(bookings.getLabName());
+        dateF.setValue(bookings.getDate().toLocalDate());
+        tfStartTime.setText(String.valueOf(bookings.getStartTime()));
+        tfEndTime.setText(String.valueOf(bookings.getEndTime()));
+
+    }
 }
 
 
