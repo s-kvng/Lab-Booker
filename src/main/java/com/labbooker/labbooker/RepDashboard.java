@@ -83,7 +83,7 @@ public class RepDashboard implements Initializable {
 
         try {
             ps = connectDB.prepareStatement(query);
-            ps.setString(1, "NKAB-100");
+            ps.setString(1, "NKAB-200");
             rs = ps.executeQuery();
             LabBookings labBookings;
 
