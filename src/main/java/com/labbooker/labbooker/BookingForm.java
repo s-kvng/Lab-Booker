@@ -68,7 +68,7 @@ public class BookingForm implements Initializable {
     );
 
     private ObservableList<String> classNameList = FXCollections.observableArrayList(
-            "NKA" , "NKB" , "NKC" , "NKD" ,"NKAB-100" , "NKAB-200", "NKCD-100", "NKCD-200"
+            "NKA100" , "NKB100" , "NKC100" , "NKD100" ,"NKA200" , "NKB200", "NKC200", "NKD200"
     );
 
     @Override
@@ -191,7 +191,7 @@ public class BookingForm implements Initializable {
 
     public boolean checkForConflictsInDatabase(Connection conn, BookingData data) {
 
-        String query = "SELECT * FROM `lab-booking` WHERE `labName` = ?' AND `startTime` < ? AND `endTime` > ? ";
+        String query = "SELECT * FROM `lab-booking` WHERE `labName` = ? AND `startTime` <= ? AND `endTime` >= ? ";
 
 
 
