@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.*;
@@ -18,6 +19,8 @@ import java.util.ResourceBundle;
 public class RepDashboard implements Initializable {
 
 
+    @FXML
+    private Label repName;
     @FXML
     private TextField tfID;
     @FXML
@@ -50,6 +53,11 @@ public class RepDashboard implements Initializable {
     @FXML
     private Button btnDelete;
 
+    @FXML
+    private Button exitBtn;
+
+    LoginData repData = LoginData.getInstance();
+
 
     private ObservableList<String> labName = FXCollections.observableArrayList(
             "Lab 1" , "Lab 2" , "Lab 3"
@@ -61,6 +69,7 @@ public class RepDashboard implements Initializable {
         showLabBookings();
 
         labF.setItems(labName);
+        repName.setText(repData.getName());
     }
 
     public void handleBtnAction(ActionEvent event){
@@ -165,6 +174,12 @@ public class RepDashboard implements Initializable {
         tfStartTime.setText(String.valueOf(bookings.getStartTime()));
         tfEndTime.setText(String.valueOf(bookings.getEndTime()));
 
+    }
+
+    public void handleExitButtonClick(ActionEvent actionEvent) {
+
+        Stage stage = (Stage) exitBtn.getScene().getWindow();
+        stage.close();
     }
 }
 

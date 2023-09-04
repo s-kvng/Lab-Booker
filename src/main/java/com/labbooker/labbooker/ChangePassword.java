@@ -55,7 +55,7 @@ public class ChangePassword {
             if(Objects.equals(passwordField1.getText(), passwordField2.getText())){
                 saveNewPassword();
                 if(position.getPosition().equals("class rep")){
-                    redirectPage("bookingForm.fxml");
+                    redirectPage("repDashboard.fxml");
                 }
                 else{
                     redirectPage("bookingForm.fxml");

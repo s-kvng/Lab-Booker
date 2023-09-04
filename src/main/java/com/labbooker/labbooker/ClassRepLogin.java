@@ -41,7 +41,7 @@ public class ClassRepLogin {
 
     CheckPosition position = CheckPosition.getInstance();
 
-    LoginData repData = new LoginData();
+    LoginData repData =  LoginData.getInstance();
 
 
     public void onLoginButtonClick(ActionEvent actionEvent) {
@@ -95,18 +95,18 @@ public class ClassRepLogin {
 
                     if (repData.getReset_password() == 1) {
 
-
-
-                        redirect("changePassword.fxml", true);
-
                         alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Success message");
                         alert.setHeaderText(null);
                         alert.setContentText("Redirect to change password");
                         alert.showAndWait();
 
+
+                        redirect("changePassword.fxml", true);
+
+
+
                     } else {
-                         redirect("repDashboard.fxml", false);
 
                         System.out.println(position.getEmail());
                         alert = new Alert(Alert.AlertType.INFORMATION);
@@ -114,6 +114,9 @@ public class ClassRepLogin {
                         alert.setHeaderText(null);
                         alert.setContentText("Redirect to dashboard");
                         alert.showAndWait();
+                         redirect("repDashboard.fxml", false);
+
+
                     }
 
                 } else {
@@ -167,6 +170,9 @@ public class ClassRepLogin {
 
                 System.out.println("works");
 
+                repData.setName(rs.getString("name"));
+                repData.setIndex_no(rs.getString("index_no"));
+                repData.setClassName(rs.getString("className"));
                 repData.setEmail(rs.getString("email"));
                 repData.setPassword(passField.getText());
                 repData.setReset_password(rs.getInt("reset_password"));
