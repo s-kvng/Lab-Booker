@@ -60,6 +60,7 @@ public class BookingForm implements Initializable {
     @FXML
     private FXMLLoader roott;
 
+    //getting the same object
     GetLecturerData lecturerData = GetLecturerData.getInstance();
 
 
@@ -191,7 +192,7 @@ public class BookingForm implements Initializable {
 
     public boolean checkForConflictsInDatabase(Connection conn, BookingData data) {
 
-        String query = "SELECT * FROM `lab-booking` WHERE `labName` = ? AND `startTime` <= ? AND `endTime` >= ? ";
+        String query = "SELECT * FROM `lab-booking` WHERE  `labName` = ? AND `startTime` <= ? AND `endTime` >= ? AND `date` = ? ";
 
 
 
@@ -200,6 +201,7 @@ public class BookingForm implements Initializable {
                 ps.setString(1, data.getLab());
                 ps.setTime(2, data.getStartTime());
                 ps.setTime(3 , data.getEndTime());
+                ps.setDate(4,data.getDate());
 
                 ResultSet resultSet = ps.executeQuery();
 
