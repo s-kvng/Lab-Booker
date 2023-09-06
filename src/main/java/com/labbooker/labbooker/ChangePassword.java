@@ -55,7 +55,7 @@ public class ChangePassword {
             if(Objects.equals(passwordField1.getText(), passwordField2.getText())){
                 saveNewPassword();
                 if(position.getPosition().equals("class rep")){
-                    redirectPage("bookingForm.fxml");
+                    redirectPage("repDashboard.fxml");
                 }
                 else{
                     redirectPage("bookingForm.fxml");
@@ -150,8 +150,19 @@ public class ChangePassword {
         roott = new FXMLLoader(HelloApplication.class.getResource(page));
         stage = (Stage) exitBtn.getScene().getWindow();
         scene = new Scene(roott.load());
-        String css = this.getClass().getResource("styles.css").toExternalForm();
-        scene.getStylesheets().add(css);
+
+        if(position.getPosition().equals("class rep")){
+
+//            String css = this.getClass().getResource("styles.css").toExternalForm();
+//            scene.getStylesheets().add(css);
+        }
+        else{
+            String css = this.getClass().getResource("styles.css").toExternalForm();
+            scene.getStylesheets().add(css);
+        }
+
+
+
 //        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();

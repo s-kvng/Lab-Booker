@@ -1,5 +1,6 @@
 package com.labbooker.labbooker;
 
+import com.labbooker.labbooker.models.BookingData;
 import com.labbooker.labbooker.models.LabBookings;
 import com.labbooker.labbooker.utils.DatabaseConnection;
 import javafx.collections.FXCollections;
@@ -9,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.*;
@@ -17,6 +20,8 @@ import java.util.ResourceBundle;
 public class RepDashboard implements Initializable {
 
 
+    @FXML
+    private Label repName;
     @FXML
     private TextField tfID;
     @FXML
@@ -49,6 +54,15 @@ public class RepDashboard implements Initializable {
     @FXML
     private Button btnDelete;
 
+    @FXML
+    private Button exitBtn;
+
+    Alert alert;
+
+    private String action;
+
+    LoginData repData = LoginData.getInstance();
+
 
     private ObservableList<String> labName = FXCollections.observableArrayList(
             "Lab 1" , "Lab 2" , "Lab 3"
@@ -60,13 +74,19 @@ public class RepDashboard implements Initializable {
         showLabBookings();
 
         labF.setItems(labName);
+        repName.setText(repData.getName());
     }
 
     public void handleBtnAction(ActionEvent event){
         System.out.println("Event");
 
         if(event.getSource() == btnUpdate){
+            action = "update";
             update();
+        }
+        else if(event.getSource() == btnDelete){
+            action = "delete";
+            delete();
         }
     }
 
@@ -81,8 +101,9 @@ public class RepDashboard implements Initializable {
         ResultSet rs;
 
         try {
+            System.out.println(repData.getClassName());
             ps = connectDB.prepareStatement(query);
-            ps.setString(1, "NKAB-100");
+            ps.setString(1, repData.getClassName());
             rs = ps.executeQuery();
             LabBookings labBookings;
 
@@ -120,6 +141,14 @@ public class RepDashboard implements Initializable {
     }
 
 
+    public void delete(){
+        String query = "DELETE FROM `lab-booking` WHERE id = ?";
+
+        executeQuery(query);
+        showLabBookings();
+    }
+
+
     public void executeQuery(String query){
         LabBookings getLabBookings = new LabBookings();
         getLabBookings.setId(Integer.parseInt(tfID.getText()));
@@ -129,29 +158,112 @@ public class RepDashboard implements Initializable {
         getLabBookings.setDate(Date.valueOf(dateF.getValue()));
 
 
+
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
+        boolean hasConflict = checkForConflictsInDatabase(connectDB , getLabBookings);
 
         PreparedStatement ps;
         ResultSet rs;
 
-        try {
-            ps = connectDB.prepareStatement(query);
-            ps.setString(1, getLabBookings.getLabName());
-            ps.setDate(2, getLabBookings.getDate());
-            ps.setTime(3, getLabBookings.getStartTime());
-            ps.setTime(4, getLabBookings.getEndTime());
-            ps.setInt(5, getLabBookings.getId());
-            int re =  ps.executeUpdate();
+       if(action.equals("update")){
+           if(!hasConflict){
+               try {
+                   ps = connectDB.prepareStatement(query);
+                   ps.setString(1, getLabBookings.getLabName());
+                   ps.setDate(2, getLabBookings.getDate());
+                   ps.setTime(3, getLabBookings.getStartTime());
+                   ps.setTime(4, getLabBookings.getEndTime());
+                   ps.setInt(5, getLabBookings.getId());
+                   int re =  ps.executeUpdate();
 
 
+                   showSuccessAlert("You have successfully booked the lab for "+ getLabBookings.getStartTime() + "on "+ getLabBookings.getDate());
+
+               } catch (SQLException e) {
+                   e.printStackTrace();
+               }
+           }
+           else{
+               showErrorAlert("Booking conflict! Choose a different time.");
+           }
+       }
+       else if(action.equals("delete")){
+           try {
+               ps = connectDB.prepareStatement(query);
+               ps.setInt(1, getLabBookings.getId());
+               int re =  ps.executeUpdate();
+
+
+               showSuccessAlert("You have successfully deleted the booking");
+
+           } catch (SQLException e) {
+               e.printStackTrace();
+           }
+       }
+    }
+
+    public void handleMouseAction(MouseEvent mouseEvent) {
+
+        LabBookings bookings = tvLabBookings.getSelectionModel().getSelectedItem();
+        System.out.println("id " + bookings.getId());
+        System.out.println("id " + bookings.getClassName());
+
+        tfID.setText(String.valueOf(bookings.getId()));
+        labF.setValue(bookings.getLabName());
+        dateF.setValue(bookings.getDate().toLocalDate());
+        tfStartTime.setText(String.valueOf(bookings.getStartTime()));
+        tfEndTime.setText(String.valueOf(bookings.getEndTime()));
+
+    }
+
+
+    public boolean checkForConflictsInDatabase(Connection conn, LabBookings data) {
+
+        String query = "SELECT * FROM `lab-booking` WHERE `labName` = ?' AND `startTime` < ? AND `endTime` > ? ";
+
+
+
+        try{
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, data.getLabName());
+            ps.setTime(2, data.getStartTime());
+            ps.setTime(3 , data.getEndTime());
+
+            ResultSet resultSet = ps.executeQuery();
+
+            return resultSet.next(); // Conflict found if any row is returned
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return true; // Handle the error appropriately
         }
     }
 
+    public void handleExitButtonClick(ActionEvent actionEvent) {
+
+        Stage stage = (Stage) exitBtn.getScene().getWindow();
+        stage.close();
+    }
+
+
+    private void showSuccessAlert(String message) {
+
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success message");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showErrorAlert(String message) {
+        alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }
 
 

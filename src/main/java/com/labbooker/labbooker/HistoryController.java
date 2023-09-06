@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class HistoryController implements Initializable {
 
+    public Button backBtn;
     @FXML
     private TableColumn<LabBookings, Integer> colID;
     @FXML
@@ -118,4 +120,6 @@ public class HistoryController implements Initializable {
     }
 
 
+    public void handleMouseClicked(MouseEvent mouseEvent) {
+    }
 }

@@ -7,13 +7,15 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.labbooker.labbooker.RepDashboard">
+<AnchorPane prefHeight="575.0" prefWidth="800.0" style="-fx-background-color: #bbdefb;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.labbooker.labbooker.RepDashboard">
    <children>
-      <VBox layoutX="38.0" layoutY="38.0" prefHeight="172.0" prefWidth="74.0" spacing="17.0">
+      <VBox layoutX="42.0" layoutY="63.0" prefHeight="172.0" prefWidth="74.0" spacing="17.0">
          <children>
             <Label text="ID" />
             <Label text="Lab name" />
@@ -22,16 +24,16 @@
             <Label text="End Time" />
          </children>
       </VBox>
-      <VBox layoutX="112.0" layoutY="38.0" prefHeight="172.0" prefWidth="174.0" spacing="8.0">
+      <VBox layoutX="116.0" layoutY="63.0" prefHeight="172.0" prefWidth="174.0" spacing="8.0">
          <children>
-            <TextField fx:id="tfID" />
+            <TextField fx:id="tfID" style="-fx-background-color: #fff;" />
             <ComboBox fx:id="labF" prefHeight="24.0" prefWidth="175.0" />
-            <DatePicker fx:id="dateF" />
-            <TextField fx:id="tfStartTime" layoutX="10.0" layoutY="58.0" />
-            <TextField fx:id="tfEndTime" layoutX="10.0" layoutY="82.0" />
+            <DatePicker fx:id="dateF" style="-fx-background-color: #fff;" />
+            <TextField fx:id="tfStartTime" layoutX="10.0" layoutY="58.0" style="-fx-background-color: #fff;" />
+            <TextField fx:id="tfEndTime" layoutX="10.0" layoutY="82.0" style="-fx-background-color: #fff;" />
          </children>
       </VBox>
-      <TableView fx:id="tvLabBookings" layoutX="293.0" layoutY="38.0" prefHeight="441.0" prefWidth="503.0">
+      <TableView fx:id="tvLabBookings" layoutX="297.0" layoutY="63.0" onMouseClicked="#handleMouseAction" prefHeight="441.0" prefWidth="503.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="43.0" text="ID" />
           <TableColumn fx:id="colLab" prefWidth="77.0" text="lab" />
@@ -41,7 +43,23 @@
             <TableColumn fx:id="colEndTime" prefWidth="97.0" text="EndTime" />
         </columns>
       </TableView>
-      <Button fx:id="btnUpdate" layoutX="112.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleBtnAction" text="Update" />
-      <Button fx:id="btnDelete" layoutX="199.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleBtnAction" text="Delete" />
+      <Button fx:id="btnUpdate" layoutX="42.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleBtnAction" prefHeight="24.0" prefWidth="100.0" text="Update" />
+      <Button fx:id="btnDelete" layoutX="172.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleBtnAction" prefWidth="100.0" text="Delete" />
+      <Button fx:id="exitBtn" layoutX="687.0" layoutY="537.0" mnemonicParsing="false" onAction="#handleExitButtonClick" prefWidth="100.0" text="Exit" />
+      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="49.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/update.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="69.0" layoutX="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/ktu-logo.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="repName" layoutX="92.0" layoutY="18.0" text="Label">
+         <font>
+            <Font name="NotoSans NFP Cond Black" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
