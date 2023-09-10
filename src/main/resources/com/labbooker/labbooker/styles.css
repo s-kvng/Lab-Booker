@@ -37,16 +37,20 @@
     -fx-text-fill: white;
     -fx-background-radius: 999px;
     -fx-padding: 20px 20px;
+    -fx-effect: dropshadow(three-pass-box, #DDDDDD, 5,0,0,5);
+
 }
 
 .login-button:hover{
+    -fx-cursor: hand;
     -fx-background-color: #e4a831;
 }
 
 
 .exit-button {
     -fx-text-fill: white;
-    -fx-background-color: red;
+    -fx-background-color: #960303;
+    -fx-effect: dropshadow(three-pass-box, #DDDDDD, 5,0,0,5);
 
 }
 
@@ -54,14 +58,17 @@
     -fx-text-fill: black;
     -fx-background-color: #e4a831;
     -fx-background-radius: 999px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, #DDDDDD, 5,0,0,5);
 
 }
 
 .history-button{
      -fx-text-fill: white;
-     -fx-background-color: #000;
+     -fx-background-color: #221e1e;
      -fx-background-radius: 999px;
-     -fx-cursor: pointer;
+     -fx-cursor: hand;
+     -fx-effect: dropshadow(three-pass-box, #DDDDDD, 5,0,0,5);
 }
 
 .text-input{
