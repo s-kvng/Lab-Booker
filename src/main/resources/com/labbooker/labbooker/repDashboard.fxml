@@ -26,7 +26,7 @@
       </VBox>
       <VBox layoutX="116.0" layoutY="63.0" prefHeight="172.0" prefWidth="174.0" spacing="8.0">
          <children>
-            <TextField fx:id="tfID" style="-fx-background-color: #fff;" />
+            <TextField fx:id="tfID" disable="true" style="-fx-background-color: #fff;" />
             <ComboBox fx:id="labF" prefHeight="24.0" prefWidth="175.0" />
             <DatePicker fx:id="dateF" style="-fx-background-color: #fff;" />
             <TextField fx:id="tfStartTime" layoutX="10.0" layoutY="58.0" style="-fx-background-color: #fff;" />

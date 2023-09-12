@@ -65,11 +65,11 @@ public class BookingForm implements Initializable {
 
 
     private ObservableList<String> labName = FXCollections.observableArrayList(
-            "Lab 1" , "Lab 2" , "Lab 3"
+            "------------------------------", "Lab 1" , "Lab 2" , "Lab 3"
     );
 
     private ObservableList<String> classNameList = FXCollections.observableArrayList(
-            "NKA100" , "NKB100" , "NKC100" , "NKD100" ,"NKA200" , "NKB200", "NKC200", "NKD200"
+            "------------------------------", "NKA100" , "NKB100" , "NKC100" , "NKD100" ,"NKA200" , "NKB200", "NKC200", "NKD200"
     );
 
     @Override
@@ -162,7 +162,12 @@ public class BookingForm implements Initializable {
 
                 ps.executeUpdate();
 
+                //
+                time.setText("");
+                endTime.setText("");
 
+                labNameComboBox.getSelectionModel().select(0);
+                classNameComboBox1.getSelectionModel().select(0);
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);

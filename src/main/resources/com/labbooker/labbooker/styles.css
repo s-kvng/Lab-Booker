@@ -74,6 +74,7 @@
 .text-input{
     -fx-padding: 20px 20px;
     -fx-border-color: #2666b5;
+    -fx-border: 5px;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
     -fx-background-color: white;
