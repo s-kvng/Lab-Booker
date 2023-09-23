@@ -41,7 +41,6 @@ public class ClassRepLogin {
 
     CheckPosition position = CheckPosition.getInstance();
     
-
     LoginData repData =  LoginData.getInstance();
 
 
