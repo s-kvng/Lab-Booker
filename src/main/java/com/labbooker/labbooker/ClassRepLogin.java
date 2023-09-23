@@ -40,6 +40,7 @@ public class ClassRepLogin {
     private FXMLLoader roott;
 
     CheckPosition position = CheckPosition.getInstance();
+    
 
     LoginData repData =  LoginData.getInstance();
 
