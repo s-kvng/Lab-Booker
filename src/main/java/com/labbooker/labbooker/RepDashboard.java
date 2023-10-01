@@ -179,7 +179,7 @@ public class RepDashboard implements Initializable {
                    int re =  ps.executeUpdate();
 
 
-                   showSuccessAlert("You have successfully booked the lab for "+ getLabBookings.getStartTime() + "on "+ getLabBookings.getDate());
+                   showSuccessAlert("You have successfully Updated the lab for "+ getLabBookings.getStartTime() + " on "+ getLabBookings.getDate());
 
                } catch (SQLException e) {
                    e.printStackTrace();

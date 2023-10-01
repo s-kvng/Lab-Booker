@@ -75,6 +75,7 @@ public class LecturerLogin {
 
 
     public void validateLogin(){
+
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
